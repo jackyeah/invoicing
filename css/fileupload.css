@@ -1,0 +1,179 @@
+﻿
+	#drop , #drop_trial , .itemFile {
+		width: 100%;
+		border: 1px dashed #AAAAAA;
+		text-align: center;
+		padding: 50px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+	}
+	
+	.itemFile 
+	{
+		border: 1px dashed #F59942 !important;
+	
+        color: #22A7F0;
+        font-size: 18px;
+        font-weight: 700;
+	}
+	
+	
+	
+	#drop:hover , #drop_trial:hover
+	{
+		background: #F9F9F9;
+		border: 1px dashed #F59942 !important;
+	    
+	}
+	
+	
+	#drop span , #drop_trial span{
+	
+        color: #CCC;
+        font-size: 18px;
+        font-weight: 700;
+	}
+	
+	.dropActive{
+		border: 1px dashed #F59942 !important;
+	}
+	
+	.dropBar {
+	    height: 18px;
+	    background: red;
+	    text-align: center;
+	    font-weight: bold;
+	}
+
+    input[type=file].dropFile {
+        height: 120px;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 100px;
+        z-index: 2;
+        opacity: 0.0;
+        width: 100%;
+        filter: alpha(opacity=0);
+        -ms-filter: "alpha(opacity=0)";
+        -khtml-opacity: 0.0;
+        -moz-opacity: 0.0;
+        
+    }
+    
+    
+    #progress
+    {
+    }
+
+    #progress .item
+    {
+        margin-left:15px;
+    }
+    
+    
+	#div_Drop1{
+		width: 100%;
+		background: #eee;
+		border: 2px dashed #BFBFBF;
+		text-align: center;
+		padding: 50px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+	}
+	
+	
+    
+	#drop_img{
+		width: 100%;
+		background: #eee;
+		border: 2px dashed #BFBFBF;
+		text-align: center;
+		padding: 50px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+	}
+	#div_Dropimage{
+		width: 100%;
+		background: #eee;
+		border: 2px dashed #BFBFBF;
+		text-align: center;
+		padding: 50px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+	}
+	
+	#div_Drop2{
+		width: 100%;
+		background: #eee;
+		border: 2px dashed #BFBFBF;
+		text-align: center;
+		padding: 50px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+	}
+	
+	
+	.bar {
+	    height: 18px;
+	    background: red;
+	    text-align: center;
+	    font-weight: bold;
+	}
+
+    input#fileupload {
+        height: 120px;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 100px;
+        z-index: 2;
+        opacity: 0.0;
+        width: 100%;
+        filter: alpha(opacity=0);
+        -ms-filter: "alpha(opacity=0)";
+        -khtml-opacity: 0.0;
+        -moz-opacity: 0.0;
+        
+    }
+    input#fileupload_preview{
+        height: 120px;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 100px;
+        z-index: 2;
+        opacity: 0.0;
+        width: 100%;
+        filter: alpha(opacity=0);
+        -ms-filter: "alpha(opacity=0)";
+        -khtml-opacity: 0.0;
+        -moz-opacity: 0.0;
+        
+    }
+    
+    #progress
+    {
+    }
+
+    #progress .item
+    {
+        margin-left:15px;
+    }
+    
+    #progress_preview
+    {
+    }
+
+    #progress_preview .item
+    {
+        margin-left:15px;
+    }

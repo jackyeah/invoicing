@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="file" id="fileUpload" name="fileUpload" multiple="multiple">
+    <input type="button" value="submit" onclick="doUpload()">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function doUpload() {
+    //## 宣告一個FormData
+    var data = new FormData();
+    //## 將檔案append FormData
+    var files = $("#fileUpload").get(0).files;
+    console.log(files.length);
+    /*if (files.length > 0) {
+        data.append("fileUpload", files[0]);
+    }
+    data.append('upload_type', 'news');
+
+    $.ajax({
+        url: '/uploadFile.php',
+        /!*headers: {
+            'Api-Code': '1029',
+            'Api-Token' : 'admin'
+        },*!/
+        method: 'POST',
+        //dataType: 'json',
+        contentType: false,         // 告诉jQuery不要去這置Content-Type
+        processData: false,         // 告诉jQuery不要去處理發送的數據
+        data: data,
+        success: function(data){
+            console.log('success');
+            console.log(data);
+        },
+        error: function(data){
+            console.log('error');
+            console.log(data);
+        }
+    });*/
+}
+</script>
+</body>
+</html>

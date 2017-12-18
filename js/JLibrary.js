@@ -1,0 +1,219 @@
+//使IE也能使用indexOf
+if(!Array.indexOf)
+{
+	Array.prototype.indexOf = function(obj)
+	{
+		for(var i=0; i<this.length; i++)
+		{
+			if(this[i]==obj)
+			{
+				return i;
+			}
+		}
+	return -1;
+	}
+}
+
+function alert_msg(msg){
+	$("#alertMsg").text(msg);
+	$("#alertDIv").slideDown();
+	setTimeout(function() {
+      $("#alertDIv").slideUp();
+    }, 10000);
+}
+
+function modal_msg(msg){
+	$(".modal-body").html(msg);
+	$("#modalMsg").modal();
+}
+
+function modal_btn(msg){
+	$(".modal-body").html(msg);
+	$("#modalButton").modal();
+}
+
+/* 檢查字串有無包含str，整串檢查
+   用來篩檢特殊字元
+*/
+function contain(str,charset){
+	var i;
+	for(i=0;i<charset.length;i++)
+	if(str.indexOf(charset.charAt(i))>=0)
+	return true;
+	return false;
+}
+
+//去除頭尾空白
+function Trim(str) {
+	var start = -1,
+	end = str.length;
+	while (str.charCodeAt(--end) < 33);
+	while (str.charCodeAt(++start) < 33);
+	return Spc_Replace(str.slice(start, end + 1));
+}
+
+//輔助Trim，去除頭尾全型空白
+function Spc_Replace(Str){
+	Str= Str.replace(/(:?^　+|　+$)/, '');
+	return Str;
+}
+
+//將日期格式 YYYY-MM-DD HH:II:SS 轉變為 YYYYMMDDHHIISS
+function DateFilter(Dt){
+	var chgDt = Dt;
+	chgDt = chgDt.replace(" ","");
+	chgDt = chgDt.replace("-","");
+	chgDt = chgDt.replace(":","");
+	chgDt = chgDt.replace("-","");
+	chgDt = chgDt.replace(":","");
+	return(chgDt);
+}
+
+//勾選所有的checkbox
+function SelectAll(id){
+	$("input:checkbox[id*=" + id + "]").attr("checked","checked");
+}
+
+//取消勾選所有的checkbox
+function SelectNone(id){
+	$("input:checkbox[id*=" + id + "]").removeAttr("checked");
+}
+
+//取得所有checkbox的值，並區隔開
+function getChkVal(Name,Interval){
+	var Str = "";
+	$("input[name^=" + Name + "]:checked").each(function ()
+	{
+		Str += $(this).val() + Interval;
+	});
+	Str = Str.substring(0,Str.length-1);
+	return Str;
+}
+
+//檢測是否有非英文數字的字串，若有，回傳true
+function chkEngNum(str){
+	re = /\W/;
+	if(re.test(str))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//檢測是否非email格式，若不是，回傳true
+function chkEmail(str){
+	var regExp = /^[^@^\s]+@[^\.@^\s]+(\.[^\.@^\s]+)+$/;
+	if(!str.match(regExp))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//檢測是否非數字，若不是，回傳true
+function chkNum(str){
+	var re = /\D/;
+	if(re.test(str))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//treegrid load msg
+function Loading(id){
+	if (typeof id=="undefined"){
+		$.blockUI({
+			message: '<h5>Loading...</h5>' ,
+			css: { border: '2px solid #95B8E7' } ,
+			overlayCSS: { backgroundColor: '#333' } });
+	}
+	else{
+		$("#"+id).block({
+			message: '<h1>Loading...</h1>' ,
+			css: { border: '2px solid #95B8E7' } ,
+			overlayCSS: { backgroundColor: '#fff' }
+		});
+	}
+}
+
+//close treegrid load msg
+function UnLoading(id){
+	if (typeof id=="undefined"){
+		$.unblockUI();
+	}
+	else{
+		$("#"+id).unblock();
+	}
+}
+
+function popMsg(str, type){
+    if (type == ''){ type = "notice"; }
+    str = str.replace(/<br \/>/g, "\n");
+    $("#freeow").freeow('', str, { classes: ["gray", type] });
+}
+
+function logoutFun() {
+    $("#logoutDialog").fbdialog({
+                title: "登出",
+                cancel: "取消",
+                okay: "登出",
+                okaybutton: true,
+                cancelbutton: true,
+                buttons: true,
+                opacity: 0.0,
+                dialogtop: ""
+    },function(callback) {
+            if (callback == 1) {
+                location.href = "mk.php?fp=logout";
+            }
+    });
+}
+
+function chgMenu(no){
+
+}
+
+function myformatter(date){
+    var y = date.getFullYear();
+    var m = date.getMonth()+1;
+    var d = date.getDate();
+    return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+}
+
+function myparser(s){
+    if (!s) return new Date();
+    var ss = (s.split('-'));
+    var y = parseInt(ss[0],10);
+    var m = parseInt(ss[1],10);
+    var d = parseInt(ss[2],10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+        return new Date(y,m-1,d) ;
+    } else {
+        return new Date()  ;
+    }
+}
+
+// 取得 GET 參數
+function GetURLParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    var result = '';
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            result = sParameterName[1];
+            break;
+        }
+    }
+    return result;
+}
