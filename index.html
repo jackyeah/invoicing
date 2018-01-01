@@ -89,6 +89,9 @@
             Loading();
             $.ajax({
                 url: Guava_apiUrl + '/admin/login',
+                xhrFields: {
+                    withCredentials: true
+                },
                 method: 'POST',
                 async: false,
                 //dataType: 'json',
@@ -99,7 +102,7 @@
                 success: function (data) {
                     UnLoading();
                     if(data.error_code == '1'){
-                        $.cookie('guava_token', data.result);
+                        $.cookie('invoicing_token', data.result);
                         location.href = 'main.html';
                     }else{
                         modal_msg('帳號或密碼有誤。');

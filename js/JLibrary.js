@@ -1,3 +1,7 @@
+var apiUrl = 'http://invoicing-api.com';
+
+
+
 //使IE也能使用indexOf
 if(!Array.indexOf)
 {
@@ -216,4 +220,49 @@ function GetURLParameter(sParam){
         }
     }
     return result;
+}
+
+function ajaxGet(apiName) {
+    $.ajax({
+        url: apiUrl + '/backend/' + apiName,
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token' : $.cookie('invoicing_token')
+        },
+        method: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(data){
+        	return data;
+        },
+        error: function(data){
+            console.log(data);
+            modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+        }
+    });
+}
+
+function ajaxPost(apiName, postData) {
+
+    $.ajax({
+        url: Guava_apiUrl + '/admin/' + apiName,
+        xhrFields: {
+            withCredentials: true
+        },
+        method: 'POST',
+        async: false,
+        dataType: 'json',
+        data: postData,
+        success: function (data) {
+            return data;
+        },
+        error: function(data){
+            console.log(data);
+            return data;
+            UnLoading();
+            modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+        }
+    });
 }
