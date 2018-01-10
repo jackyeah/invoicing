@@ -73,7 +73,7 @@
                 <div class="side-menu-container">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">
-                            <div class="icon glyphicon glyphicon-thumbs-up"></div>
+                            <div class="icon glyphicon glyphicon-leaf"></div>
                             <div class="title">進銷存系統</div>
                         </a>
                         <button type="button" class="navbar-expand-toggle pull-right visible-xs">
@@ -83,7 +83,7 @@
                     <ul class="nav navbar-nav">
                         <li class="panel panel-default dropdown">
                             <a data-toggle="collapse" href="#dropdown-news">
-                                <span class="icon fa fa-newspaper-o"></span><span class="title">我要進貨</span>
+                                <span class="icon glyphicon glyphicon-log-in"></span><span class="title">我要進貨</span>
                             </a>
                             <!-- Dropdown level 1 -->
                             <div id="dropdown-news" class="panel-collapse collapse">
@@ -99,17 +99,17 @@
                         </li>
                         <li>
                             <a href="sell.html">
-                                <span class="icon fa fa-thumbs-o-up"></span><span class="title">賣出產品</span>
+                                <span class="icon glyphicon glyphicon-log-out"></span><span class="title">賣出產品</span>
                             </a>
                         </li>
                         <li>
                             <a href="inventory_list.html">
-                                <span class="icon fa fa-thumbs-o-up"></span><span class="title">查閱目前庫存</span>
+                                <span class="icon glyphicon glyphicon-search"></span><span class="title">查閱目前庫存</span>
                             </a>
                         </li>
                         <li>
                             <a href="order_list.html">
-                                <span class="icon fa fa-thumbs-o-up"></span><span class="title">查閱訂單</span>
+                                <span class="icon glyphicon glyphicon-eye-open"></span><span class="title">查閱訂單</span>
                             </a>
                         </li>
                     </ul>
@@ -134,6 +134,110 @@
                     <div class="description"></div>
                 </div>
                 <div class="row">
+                    <div class="step">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="step" class="active">
+                                <a href="#step1" id="step1-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                                    <div class="icon fa fa-search"></div>
+                                    <div class="step-title">
+                                        <div class="title">選擇商品</div>
+                                        <div class="description">輸入貨號, 商品名稱，進行搜尋</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li role="step">
+                                <a href="#step2" role="tab" id="step2-tab" data-toggle="tab" aria-controls="profile">
+                                    <div class="icon fa fa-fa-truck"></div>
+                                    <div class="step-title">
+                                        <div class="title">補貨詳細資料</div>
+                                        <div class="description">輸入進貨日期，成本，數量</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li role="step">
+                                <a href="#step3" role="tab" id="step3-tab" data-toggle="tab" aria-controls="profile">
+                                    <div class="icon fa fa-check-circle-o"></div>
+                                    <div class="step-title">
+                                        <div class="title">確認訂單</div>
+                                        <div class="description"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="step1" aria-labelledby="home-tab">
+                                <div class="form-group form-inline">
+                                    <!-- form-inline -->
+                                    <label for="itemNo">貨號</label>
+                                    <input type="text" class="form-control" id="itemNo" value="">&nbsp;&nbsp;
+
+                                    <label for="itemName">名稱</label>
+                                    <input type="text" class="form-control" id="itemName" value="">
+
+                                    <button class="btn btn-primary" onclick="getNewsList()">搜尋</button>
+                                </div>
+                                <table id="DataList" class="datatable table table-striped" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>名稱</th>
+                                        <th>貨號</th>
+                                        <th>廠商</th>
+                                        <th>存貨</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>名稱</th>
+                                        <th>貨號</th>
+                                        <th>廠商</th>
+                                        <th>存貨</th>
+                                        <th></th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="step2" aria-labelledby="profile-tab">
+                                <div class="form-group">
+                                    <!-- form-inline -->
+                                    <label for="Date">日期</label>
+                                    <input type="text" class="form-control" id="Date" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="coast">成本</label>
+                                    <input type="text" class="form-control" id="coast" placeholder="成本" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>數量</label>
+                                    <input type="text" class="form-control" name="quantity" placeholder="數量" value="">
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="step3" aria-labelledby="dropdown1-tab">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">補貨明細</div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label>名稱</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>日期</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>成本</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>數量</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div align="right">
+                                    <button type="button" class="btn btn-success" onclick="saveData()">存檔</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <script type="text/javascript" src="js/jquery-cookie.js"></script>
                 <script type="text/javascript" src="js/invoicing.js"></script>
