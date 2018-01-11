@@ -43,7 +43,7 @@
                     </button>
                     <ol class="breadcrumb navbar-breadcrumb">
                         <li>進銷存系統</li>
-                        <li id="nowPTitle" class="active">Data</li>
+                        <li id="nowPTitle" class="active">管理進貨廠商列表</li>
                     </ol>
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-th icon"></i>
@@ -134,6 +134,40 @@
                     <div class="description"></div>
                 </div>
                 <div class="row">
+                    <table id="DataList" class="datatable table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>名稱</th>
+                            <th>進貨數量</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>名稱</th>
+                            <th>進貨數量</th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>NIKE</td>
+                                <td>10</td>
+                                <td>
+                                    <button class="btn btn-info" onclick="">編輯</button>
+                                    <button class="btn btn-warning" onclick="">刪除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ADIDAS</td>
+                                <td>10</td>
+                                <td>
+                                    <button class="btn btn-info" onclick="">編輯</button>
+                                    <button class="btn btn-warning" onclick="">刪除</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <script type="text/javascript" src="js/jquery-cookie.js"></script>
                 <script type="text/javascript" src="js/invoicing.js"></script>

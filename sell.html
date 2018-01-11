@@ -43,7 +43,7 @@
                     </button>
                     <ol class="breadcrumb navbar-breadcrumb">
                         <li>進銷存系統</li>
-                        <li id="nowPTitle" class="active">Data</li>
+                        <li id="nowPTitle" class="active">賣出產品</li>
                     </ol>
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-th icon"></i>
@@ -134,9 +134,78 @@
                     <div class="description"></div>
                 </div>
                 <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <div class="title" id="subTitleOrder">訂單資料</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div align="right">
+                                    <button type="button" class="btn btn-success" onclick="saveData()">存檔</button>
+                                </div>
+                                <div class="form-group">
+                                    <!-- form-inline -->
+                                    <label for="Date">訂單日期</label>
+                                    <input type="text" class="form-control" id="Date" value="">
+                                </div>
+                                <div class="form-group">
+                                    <!-- form-inline -->
+                                    <label for="orderSource">訂單來源	</label>
+                                    <select id="orderSource" class="form-control">
+                                        <option value="0">請選擇</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Buyer">買家</label>
+                                    <input type="text" class="form-control" id="Buyer" placeholder="買家" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Transport">出貨方式</label>
+                                    <select id="Transport" class="form-control">
+                                        <option value="0">請選擇</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <div class="title" id="subTitleDetail">產品資料</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                    <div class="form-group form-inline">
+                                        <!-- form-inline -->
+                                        <label for="itemNo">貨號</label>
+                                        <input type="text" class="form-control" id="itemNo" value="">&nbsp;&nbsp;
+
+                                        <label for="itemName">名稱</label>
+                                        <input type="text" class="form-control" id="itemName" value="">
+
+                                        <button class="btn btn-primary" onclick="getProduct()">搜尋</button>
+                                        <span id="schResult" class="btn btn-info" style="cursor: default; display: none; margin-left: 30px;"></span>
+                                        <button id="btnAdd" class="btn btn-success" onclick="addProduct()" style="display: none;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                                        <button id="btnDel" class="btn btn-danger" onclick="delProduct()" style="display: none;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                    </div>
+                                <div id="productInformation">
+                                    <input type="hidden" id="productIndex" value="0">
+                                </div>
+                                <div align="right" style="clear: both;">
+                                    <button type="button" class="btn btn-success" onclick="saveData()">存檔</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <script type="text/javascript" src="js/jquery-cookie.js"></script>
                 <script type="text/javascript" src="js/invoicing.js"></script>
+                <script type="text/javascript" src="js/sell.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
