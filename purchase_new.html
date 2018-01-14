@@ -72,7 +72,7 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="side-menu-container">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="main.html">
                             <div class="icon glyphicon glyphicon-leaf"></div>
                             <div class="title">進銷存系統</div>
                         </a>
@@ -92,7 +92,6 @@
                                         <li><a href="purchase_new.html">進貨新產品</a></li>
                                         <li><a href="purchase_old.html">舊商品補貨</a></li>
                                         <li><a href="purchase_list.html">查看進貨紀錄</a></li>
-                                        <li><a href="manufacturers_list.html">管理進貨廠商列表</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -110,6 +109,16 @@
                         <li>
                             <a href="order_list.html">
                                 <span class="icon glyphicon glyphicon-eye-open"></span><span class="title">查閱訂單</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="inventory_safe.html">
+                                <span class="icon glyphicon glyphicon-warning-sign"></span><span class="title">安全庫存</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="setting.html">
+                                <span class="icon glyphicon glyphicon-cog"></span><span class="title">基本設定</span>
                             </a>
                         </li>
                     </ul>
@@ -153,29 +162,27 @@
                                     <div class="form-group">
                                         <!-- form-inline -->
                                         <label for="Manufacturers">廠商</label>
-                                        <select id="Manufacturers" class="form-control">
-                                            <option value="0">請選擇</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="Manufacturers" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="Remark">備註</label>
-                                        <input type="text" class="form-control" id="Remark" placeholder="備註" value="">
+                                        <input type="text" class="form-control" id="Remark" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="itemName">商品名稱</label>
-                                        <input type="text" class="form-control" id="itemName" placeholder="商品名稱" value="">
+                                        <input type="text" class="form-control" id="itemName" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="itemNo">商品貨號</label>
-                                        <input type="text" class="form-control" id="itemNo" placeholder="商品貨號" value="">
+                                        <input type="text" class="form-control" id="itemNo" placeholder="請輸入英文數字" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="coast">成本</label>
-                                        <input type="text" class="form-control" id="coast" placeholder="成本" value="">
+                                        <input type="text" class="form-control" id="coast" placeholder="請輸入數字" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="price">售價</label>
-                                        <input type="text" class="form-control" id="price" placeholder="售價" value="">
+                                        <input type="text" class="form-control" id="price" placeholder="請輸入數字" value="">
                                     </div>
                             </div>
                         </div>
@@ -189,20 +196,26 @@
                                     <div class="title" id="subTitleCount">
                                         款式數量
                                         <a href="javascript:void(1);" onclick="addCount()">
-                                            <span class="glyphicon glyphicon-plus-sign" style="color: red !important; margin-left: 10px;" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-plus-sign" style="color: darkgreen !important; margin-left: 10px;" aria-hidden="true"></span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body" id="div_ColorCount">
-                                <div class="form-group">
-                                    <label>顏色款式</label>
-                                    <input type="text" class="form-control" name="other" placeholder="顏色款式" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label>數量</label>
-                                    <input type="text" class="form-control" name="quantity" placeholder="數量" value="">
-                                </div>
+                                <input type="hidden" id="count" value="1">
+                                <ul class="list-group">
+                                    <li class="list-group-item form-group form-inline">
+                                        <label>顏色款式(1)</label>
+                                        <input type="text" class="form-control" name="other" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>數量(1)</label>
+                                        <input type="text" class="form-control" name="quantity" placeholder="請輸入數字" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="checkbox3 checkbox-round" style="display: inline-block;">
+                                            <input type="checkbox" id="safeSetting_1" class="safeSetting" value="1" onclick="safeQuantity(1)">
+                                            <label for="safeSetting_1">設定安全庫存(1)</label>
+                                        </div>
+                                        <input type="text" class="form-control" name="safeQuantity" id="safeQuantity_1" placeholder="請輸入安全庫存數量" style="display:none;" value="">
+                                    </li>
+                                </ul>
                             </div>
 
                             <div align="right">
@@ -222,7 +235,7 @@
                                 <h4 class="modal-title" id="myModalLabel">系統訊息</h4>
                             </div>
                             <div class="modal-body"></div>
-                            <div class="modal-footer">
+                            <div class="modal-footer" style="display: none;">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
                                 <button type="button" class="btn btn-danger" onclick="modal_OK()">確認</button>
                             </div>
@@ -232,6 +245,7 @@
             </div>
         </div>
     </div>
+    <footer class="app-footer">
     <footer class="app-footer">
         <div class="wrapper">
             <span class="pull-right"><a href="#"><i class="fa fa-long-arrow-up"></i></a></span>Leaf © 2018 Copyright.

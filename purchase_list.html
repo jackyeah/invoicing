@@ -72,7 +72,7 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="side-menu-container">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="main.html">
                             <div class="icon glyphicon glyphicon-leaf"></div>
                             <div class="title">進銷存系統</div>
                         </a>
@@ -92,7 +92,6 @@
                                         <li><a href="purchase_new.html">進貨新產品</a></li>
                                         <li><a href="purchase_old.html">舊商品補貨</a></li>
                                         <li><a href="purchase_list.html">查看進貨紀錄</a></li>
-                                        <li><a href="manufacturers_list.html">管理進貨廠商列表</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -110,6 +109,16 @@
                         <li>
                             <a href="order_list.html">
                                 <span class="icon glyphicon glyphicon-eye-open"></span><span class="title">查閱訂單</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="inventory_safe.html">
+                                <span class="icon glyphicon glyphicon-warning-sign"></span><span class="title">安全庫存</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="setting.html">
+                                <span class="icon glyphicon glyphicon-cog"></span><span class="title">基本設定</span>
                             </a>
                         </li>
                     </ul>
@@ -137,117 +146,51 @@
                     <table id="DataList" class="datatable table table-striped" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>名稱</th>
-                            <th>貨號</th>
-                            <th>成本</th>
-                            <th>售價</th>
-                            <th>顏色款式</th>
-                            <th>數量</th>
                             <th>進貨日期</th>
+                            <th>商品名稱</th>
+                            <th>顏色款式</th>
+                            <th>進貨數量</th>
+                            <th>進貨成本</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>名稱</th>
-                            <th>貨號</th>
-                            <th>成本</th>
-                            <th>售價</th>
-                            <th>顏色款式</th>
-                            <th>數量</th>
                             <th>進貨日期</th>
+                            <th>商品名稱</th>
+                            <th>顏色款式</th>
+                            <th>進貨數量</th>
+                            <th>進貨成本</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
-                            <tr>
-                                <td>月亮球</td>
-                                <td>NA000001</td>
-                                <td>50</td>
-                                <td>150</td>
-                                <td>10-cm</td>
-                                <td>15</td>
-                                <td>2018-01-11</td>
-                            </tr>
+                        <tr>
+                            <td>2018/01/01</td>
+                            <td>狗衣服</td>
+                            <td>黃色</td>
+                            <td>4</td>
+                            <td>150</td>
+                        </tr>
+                        <tr>
+                            <td>2018/01/01</td>
+                            <td>狗衣服</td>
+                            <td>紅色</td>
+                            <td>5</td>
+                            <td>150</td>
+                        </tr>
+                        <tr>
+                            <td>2018/01/01</td>
+                            <td>狗衣服</td>
+                            <td>黑色</td>
+                            <td>6</td>
+                            <td>150</td>
+                        </tr>
+                        <tr>
+                            <td>2018/01/01</td>
+                            <td>狗衣服</td>
+                            <td>籃色</td>
+                            <td>7</td>
+                            <td>150</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
