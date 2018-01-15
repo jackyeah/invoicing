@@ -8,6 +8,10 @@ $(function() {
 
     //console.log($.cookie('invoicing_token'));
 
+    $('#searchText').select2({
+        maximumSelectionLength: 1
+    });
+
     UnLoading();
 });
 
