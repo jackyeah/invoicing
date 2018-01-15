@@ -53,6 +53,23 @@
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-times icon"></i>
                     </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-warning"></i> 4</a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                通知
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="inventory_safe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge">4</span> <i class="fa fa-exclamation-circle icon"></i> 安全庫存警示
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="dropdown profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">system<span class="caret"></span></a>
                         <ul class="dropdown-menu animated fadeInDown">
@@ -103,7 +120,7 @@
                         </li>
                         <li>
                             <a href="inventory_list.html">
-                                <span class="icon glyphicon glyphicon-search"></span><span class="title">查閱目前庫存</span>
+                                <span class="icon glyphicon glyphicon-search"></span><span class="title">庫存清單</span>
                             </a>
                         </li>
                         <li>
@@ -161,19 +178,15 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- form-inline -->
-                                    <label for="orderSource">訂單來源	</label>
+                                    <label for="orderSource">訂單來源</label>
                                     <select id="orderSource" class="form-control">
-                                        <option value="0">請選擇</option>
+                                        <option value="">請選擇</option>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Buyer">買家</label>
-                                    <input type="text" class="form-control" id="Buyer" placeholder="買家" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="Transport">出貨方式</label>
                                     <select id="Transport" class="form-control">
-                                        <option value="0">請選擇</option>
+                                        <option value="">請選擇</option>
                                     </select>
                                 </div>
                             </div>
@@ -191,19 +204,30 @@
                             <div class="card-body">
                                     <div class="form-group form-inline">
                                         <!-- form-inline -->
-                                        <label for="itemNo">貨號</label>
-                                        <input type="text" class="form-control" id="itemNo" value="">&nbsp;&nbsp;
-
-                                        <label for="itemName">名稱</label>
-                                        <input type="text" class="form-control" id="itemName" value="">
-
-                                        <button class="btn btn-primary" onclick="getProduct()">搜尋</button>
-                                        <span id="schResult" class="btn btn-info" style="cursor: default; display: none; margin-left: 30px;"></span>
-                                        <button id="btnAdd" class="btn btn-success" onclick="addProduct()" style="display: none;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                                        <button id="btnDel" class="btn btn-danger" onclick="delProduct()" style="display: none;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                        <label for="itemName">貨號 / 名稱</label>
+                                        <select class="form-control" id="itemName" onchange="addProduct()">
+                                            <option value="">請搜尋</option>
+                                            <option value="1">狗衣服.紅（NA001）</option>
+                                            <option value="2">狗衣服.黑（NA002）</option>
+                                            <option value="3">月亮球.10cm（NB001）</option>
+                                            <option value="4">月亮球.15cm（NB002）</option>
+                                        </select>
                                     </div>
-                                <div id="productInformation">
+                                <div>
                                     <input type="hidden" id="productIndex" value="0">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>產品名稱</th>
+                                            <th>數量</th>
+                                            <th>售價</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="productInformation">
+
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div align="right" style="clear: both;">
                                     <button type="button" class="btn btn-success" onclick="saveData()">存檔</button>

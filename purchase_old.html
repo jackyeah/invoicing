@@ -53,6 +53,23 @@
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-times icon"></i>
                     </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-warning"></i> 4</a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                通知
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="inventory_safe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge">4</span> <i class="fa fa-exclamation-circle icon"></i> 安全庫存警示
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="dropdown profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">system<span class="caret"></span></a>
                         <ul class="dropdown-menu animated fadeInDown">
@@ -103,7 +120,7 @@
                         </li>
                         <li>
                             <a href="inventory_list.html">
-                                <span class="icon glyphicon glyphicon-search"></span><span class="title">查閱目前庫存</span>
+                                <span class="icon glyphicon glyphicon-search"></span><span class="title">庫存清單</span>
                             </a>
                         </li>
                         <li>
@@ -181,6 +198,7 @@
                                     </div>
                                     <select class="form-control" id="searchText" style="width: 300px;">
                                         <option value="">請輸入</option>
+                                        <option value="1">狗衣服（NA001）</option>
                                     </select>
                                     <button class="btn btn-primary" onclick="getNewsList()">搜尋</button>
                                 </div>
@@ -195,7 +213,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>數量</label>
-                                    <input type="text" class="form-control" name="quantity" placeholder="數量" value="">
+                                    <input type="text" class="form-control" id="quantity" placeholder="數量" value="">
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="step3" aria-labelledby="dropdown1-tab">

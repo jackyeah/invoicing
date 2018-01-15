@@ -5,7 +5,7 @@ $(function() {
     Loading();
     $('#Date').datetimepicker({
         format: 'YYYY/MM/DD'
-    });
+    }).val(getToday());
 
     $("#nowPTitle").text('賣出產品');
 
@@ -86,44 +86,91 @@ function getShippingMethod(){
      });*/
 }
 
-function getProduct() {
-    $('#schResult').html($('#itemName').val()).show();
-    $('#btnAdd, #btnDel').show();
-}
-
 function addProduct() {
-    var index = parseInt($('#productIndex').val()) + 1;
+    if ($('#itemName').val() != '') {
+        var index = parseInt($('#productIndex').val()) + 1;
+        var info = '<tr id="product' + index + '"> <td>' + $('#itemName option:selected').text() +
+            '<input name="productID" type="hidden" value="' + $('#itemName option:selected').val() + '"></td> <td>' +
+            '<input type="text" class="form-control" name="productQuantity" id="productQuantity' + index + '" placeholder="數量" value=""></td> <td>' +
+            '<input type="text" class="form-control" name="productPrice" id="productPrice' + index + '" placeholder="售價" value="">' +
+            '</td><td><span class="glyphicon glyphicon-remove" aria-hidden="true" style="float:right; color:red; cursor: pointer;" onclick="delProductDetail(' + index + ')"></span></td></tr>';
 
-    var info = '<div id="product' + index + '" class="col-xs-6"><div class="panel panel-info"> <div class="panel-heading">';
-    info += $('#schResult').text();
-    info += '<span class="glyphicon glyphicon-remove" aria-hidden="true" style="float:right; color:red; cursor: pointer;" onclick="delProductDetail(' + index + ')"></span></div>';
-    info += '<div class="panel-body">';
-    info += '<div class="form-group">';
-    info += '<label for="productColor' + index + '">顏色款式</label>';
-    info += '<select id="productColor' + index + '" class="form-control">';
-    info += '<option value="0">請選擇</option>';
-    info += '</select>';
-    info += '</div>';
-    info += '<div class="form-group">';
-    info += '<label for="productQuantity' + index + '' + index + '">數量</label>';
-    info += '<input type="text" class="form-control" id="productQuantity' + index + '" placeholder="數量" value="">';
-    info += '</div>';
-    info += '<div class="form-group">';
-    info += '<label for="productPrice' + index + '' + index + '">售價</label>';
-    info += '<input type="text" class="form-control" id="productPrice' + index + '" placeholder="售價" value="">';
-    info += '</div>';
-    info += '</div> </div></div>';
+        $('#productInformation').append(info);
 
-    $('#productInformation').append(info);
-
-    $('#productIndex').val(index);
-    $('#schResult, #btnAdd, #btnDel').hide();
-}
-
-function delProduct() {
-    $('#schResult, #btnAdd, #btnDel').hide();
+        $('#productIndex').val(index);
+    }
 }
 
 function delProductDetail(index) {
     $('#product' + index).remove();
+}
+
+function saveData() {
+    var msg = '';
+    var p_msg = false;
+    var Date = $('#Date').val();
+    var orderSource = $('#orderSource').val();
+    var Transport = $('#Transport').val();
+
+    if(Date == ''){
+        msg += "日期，請勿為空。<br />";
+    }
+
+    if(orderSource == ''){
+        msg += "訂單來源，請勿為空。<br />";
+    }
+
+    if(Transport == ''){
+        msg += "出貨方式，請勿為空。<br />";
+    }
+
+    var productID = [];
+    var k = 1;
+    $("input[name='productID']").each(function() {
+        if($(this).val() == ''){
+            p_msg = true;
+        }
+        productID.push($(this).val());
+        k++;
+    });
+
+    if(productID.length < 1){
+        msg += "產品資料，請至少加入一項。<br />";
+    }else{
+        var productQuantity = [];
+        var i = 1;
+        $("input[name='productQuantity']").each(function() {
+            if($(this).val() == ''){
+                p_msg = true;
+            }
+            productQuantity.push($(this).val());
+            i++;
+        });
+
+        var productPrice = [];
+        var j = 1;
+        $("input[name='productPrice']").each(function() {
+            if($(this).val() == ''){
+                p_msg = true;
+            }
+            productPrice.push($(this).val());
+            j++;
+        });
+
+        if(p_msg){
+            msg += "產品資料，請勿遺漏。<br />";
+        }
+    }
+
+    if(msg == ''){
+        $('.modal-footer').show();
+        modal_btn('請確認是否送出。');
+    }else{
+        modal_btn(msg);
+    }
+}
+
+function modal_OK() {
+    $('.modal-footer').hide();
+    modal_btn('已成功儲存資料。');
 }

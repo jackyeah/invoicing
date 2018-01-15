@@ -34,7 +34,7 @@ function checkDetail() {
     $('#dataProduct').val($('#searchText').val());
     $('#dataDate').text($('#Date').val());
     $('#dataCoast').text($('#coast').val());
-    $('#dataCount').text($('#count').val());
+    $('#dataCount').text($('#quantity').val());
 }
 
 function saveData() {
@@ -61,8 +61,15 @@ function saveData() {
     }
 
     if(msg == ''){
-        modal_msg('1111111');
+        $('.modal-footer').show();
+        modal_btn('請確認是否送出');
     }else{
-        modal_msg(msg);
+        $('.modal-footer').hide();
+        modal_btn(msg);
     }
+}
+
+function modal_OK() {
+    $('.modal-footer').hide();
+    modal_btn('OK');
 }

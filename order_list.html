@@ -53,6 +53,23 @@
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="fa fa-times icon"></i>
                     </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-warning"></i> 4</a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                通知
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="inventory_safe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge">4</span> <i class="fa fa-exclamation-circle icon"></i> 安全庫存警示
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="dropdown profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">system<span class="caret"></span></a>
                         <ul class="dropdown-menu animated fadeInDown">
@@ -103,7 +120,7 @@
                         </li>
                         <li>
                             <a href="inventory_list.html">
-                                <span class="icon glyphicon glyphicon-search"></span><span class="title">查閱目前庫存</span>
+                                <span class="icon glyphicon glyphicon-search"></span><span class="title">庫存清單</span>
                             </a>
                         </li>
                         <li>
@@ -153,109 +170,63 @@
                     </div>
                 <table id="DataList" class="datatable table table-striped" cellspacing="0" width="100%">
                     <thead>
-                    <tr>
-                        <th>產品名稱</th>
-                        <th>貨號</th>
-                        <th>售價</th>
-                        <th>顏色款式</th>
-                        <th>數量</th>
-                        <th>買家</th>
-                        <th>訂單來源</th>
-                        <th>訂單日期</th>
-                    </tr>
+                        <tr>
+                            <th>訂單來源</th>
+                            <th>寄送方式</th>
+                            <th>訂單時間/訂單金額</th>
+                            <th>利潤</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tfoot>
-                    <tr>
-                        <th>產品名稱</th>
-                        <th>貨號</th>
-                        <th>售價</th>
-                        <th>顏色款式</th>
-                        <th>數量</th>
-                        <th>買家</th>
-                        <th>訂單來源</th>
-                        <th>訂單日期</th>
-                    </tr>
+                        <tr>
+                            <th>訂單來源</th>
+                            <th>寄送方式</th>
+                            <th>訂單時間/訂單金額</th>
+                            <th>利潤</th>
+                            <th></th>
+                        </tr>
                     </tfoot>
                     <tbody>
                         <tr>
-                            <td>月亮球</td>
-                            <td>NA000001</td>
-                            <td>150</td>
-                            <td>10-cm</td>
-                            <td>15</td>
-                            <td>買家ABC</td>
-                            <td>蝦皮</td>
-                            <td>2018-01-11</td>
-                        </tr>
-                        <tr>
-                            <td>蟑螂抱枕</td>
-                            <td>NA000002</td>
-                            <td>450</td>
-                            <td>30-cm</td>
-                            <td>5</td>
-                            <td>買家DEF</td>
                             <td>露天</td>
-                            <td>2018-01-09</td>
+                            <td>全家-貨到付款</td>
+                            <td>2018-01-15 00:00:00 / 150</td>
+                            <td>10</td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
+                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
+                            </td>
                         </tr>
                         <tr>
-                            <td>月亮球</td>
-                            <td>NA000001</td>
-                            <td>150</td>
-                            <td>10-cm</td>
-                            <td>15</td>
-                            <td>買家ABC</td>
-                            <td>蝦皮</td>
-                            <td>2018-01-11</td>
-                        </tr>
-                        <tr>
-                            <td>蟑螂抱枕</td>
-                            <td>NA000002</td>
-                            <td>450</td>
-                            <td>30-cm</td>
-                            <td>5</td>
-                            <td>買家DEF</td>
                             <td>露天</td>
-                            <td>2018-01-09</td>
+                            <td>全家-貨到付款</td>
+                            <td>2018-01-15 00:00:00 / 150</td>
+                            <td>10</td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
+                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
+                            </td>
                         </tr>
                         <tr>
-                            <td>月亮球</td>
-                            <td>NA000001</td>
-                            <td>150</td>
-                            <td>10-cm</td>
-                            <td>15</td>
-                            <td>買家ABC</td>
-                            <td>蝦皮</td>
-                            <td>2018-01-11</td>
-                        </tr>
-                        <tr>
-                            <td>蟑螂抱枕</td>
-                            <td>NA000002</td>
-                            <td>450</td>
-                            <td>30-cm</td>
-                            <td>5</td>
-                            <td>買家DEF</td>
                             <td>露天</td>
-                            <td>2018-01-09</td>
+                            <td>全家-貨到付款</td>
+                            <td>2018-01-15 00:00:00 / 150</td>
+                            <td>10</td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
+                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
+                            </td>
                         </tr>
                         <tr>
-                            <td>月亮球</td>
-                            <td>NA000001</td>
-                            <td>150</td>
-                            <td>10-cm</td>
-                            <td>15</td>
-                            <td>買家ABC</td>
-                            <td>蝦皮</td>
-                            <td>2018-01-11</td>
-                        </tr>
-                        <tr>
-                            <td>蟑螂抱枕</td>
-                            <td>NA000002</td>
-                            <td>450</td>
-                            <td>30-cm</td>
-                            <td>5</td>
-                            <td>買家DEF</td>
                             <td>露天</td>
-                            <td>2018-01-09</td>
+                            <td>全家-貨到付款</td>
+                            <td>2018-01-15 00:00:00 / 150</td>
+                            <td>10</td>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
+                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
