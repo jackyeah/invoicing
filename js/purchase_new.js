@@ -52,6 +52,8 @@ function addCount() {
     var html = '<ul class="list-group" id="colorCount' + count + '"><li class="list-group-item form-group form-inline">' +
         '<a href="javascript:void(1);" onclick="delCount(' + count + ')">' +
         '<span class="glyphicon glyphicon-minus-sign" style="color: red !important; margin-right: 10px; font-size: 20px; vertical-align: middle;" aria-hidden="true"></span></a>' +
+        '<label>貨號(' + count + ')</label>&nbsp;' +
+        '<input type="text" class="form-control" name="item" placeholder="請輸入英文數字" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
         '<label>顏色款式(' + count + ')</label>&nbsp;' +
         '<input type="text" class="form-control" name="other" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
         '<label>數量(' + count + ')</label>&nbsp;' +
@@ -85,7 +87,6 @@ function saveData() {
     var Manufacturers = $('#Manufacturers').val();
     var Remark = $('#Remark').val();
     var itemName = $('#itemName').val();
-    var itemNo = $('#itemNo').val();
     var coast = $('#coast').val();
     var price = $('#price').val();
 
@@ -99,14 +100,6 @@ function saveData() {
 
     if(itemName == ''){
         msg += "商品名稱，請勿為空。<br />";
-    }
-
-    if(itemNo == ''){
-        msg += "商品貨號，請勿為空。<br />";
-    }else{
-        if(chkEngNum(itemNo)){
-            msg += "商品貨號，請勿輸入英數以外的字元。<br />";
-        }
     }
 
     if(coast == ''){
@@ -124,6 +117,20 @@ function saveData() {
             msg += "售價，請輸入數字。<br />";
         }
     }
+
+    var item = [];
+    var k = 1;
+    $("input[name='item']").each(function() {
+        if($(this).val() == ''){
+            msg += "貨號(" + k +  ")，請勿為空。<br />";
+        }else{
+            if(chkEngNum($(this).val())){
+                msg += "貨號(" + k +  ")，請勿輸入英數以外的字元。<br />";
+            }
+        }
+        item.push($(this).val());
+        k++;
+    });
 
     var other = [];
     var i = 1;
@@ -150,7 +157,42 @@ function saveData() {
         j++;
     });
 
+    var safe = [];
+    var m = 1;
+    $("input[name='safeQuantity']").each(function() {
+        var safe_value = "0";
+        if($('#safeSetting_' + m).prop('checked')) {
+            if ($(this).val() == '') {
+                msg += "安全庫存數量(" + m + ")，請勿為空。<br />";
+            } else {
+                if (chkNum($(this).val())) {
+                    msg += "安全庫存數量(" + m + ")，請輸入數字。<br />";
+                }else{
+                    safe_value = $(this).val();
+                }
+            }
+        }
+
+        safe.push(safe_value);
+        m++;
+    });
+
+    var purchaseDetail = '[';
+    for(var l=0;l<=j-2;l++) {
+        purchaseDetail += '{"item_no":"' + item[l] + '","style":"' + other[l] + '","quality":"' + quantity[l] + '","safety_stock":"' + safe[l] + '"},';
+    }
+    purchaseDetail = purchaseDetail.substring(0,purchaseDetail.length-1);
+    purchaseDetail += ']';
+
     if(msg == ''){
+        $('#submit_date').val(Date);
+        $('#submit_manufacturers').val(Manufacturers);
+        $('#submit_remark').val(Remark);
+        $('#submit_name').val(itemName);
+        $('#submit_coast').val(coast);
+        $('#submit_price').val(price);
+        $('#submit_purchaseDetail').val(purchaseDetail);
+
         $('.modal-footer').show();
         modal_btn('請確認是否送出。');
     }else{
@@ -159,24 +201,42 @@ function saveData() {
 }
 
 function modal_OK() {
-    $('.modal-footer').hide();
-    modal_btn('已成功儲存資料。');
-}
+    console.log($('#submit_purchaseDetail').val());
 
-function getToday() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
+    $.ajax({
+        url: apiUrl + '/purchase',
+        method: 'POST',
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token': $.cookie('invoicing_token')
+        },
+        dataType: 'json',
+        async: false,
+        data: {
+            'date' : $('#submit_date').val(),
+            'manufacturers' : $('#submit_manufacturers').val(),
+            'remark' : $('#submit_remark').val(),
+            'name' : $('#submit_name').val(),
+            'coast' : $('#submit_coast').val(),
+            'price' : $('#submit_price').val(),
+            'purchaseDetail' : $('#submit_purchaseDetail').val()
+        },
+        success: function (data) {
+            console.log(data);
+            $('.modal-footer').hide();
 
-    if(dd<10) {
-        dd = '0'+dd
-    }
-
-    if(mm<10) {
-        mm = '0'+mm
-    }
-
-    today = yyyy + '/' + mm + '/' + dd;
-    return today;
+            if(data.error_code == '1'){
+                //modal_btn('已成功儲存資料。');
+                location.href = 'purchase_list.html?msg=1';
+            }else{
+                modal_btn('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            }
+        },
+        error: function (data) {
+            console.log(data);
+            modal_btn('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+        }
+    });
 }

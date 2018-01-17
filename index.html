@@ -88,21 +88,14 @@
         }else {
             Loading();
 
-            if(Account == 'admin' && Password == '1234'){
-                location.href = 'main.html';
-            }else{
-                modal_msg('帳號或密碼錯誤。');
-            }
-            UnLoading();
-
-            /*$.ajax({
-                url: Guava_apiUrl + '/admin/login',
+            $.ajax({
+                url: apiUrl + '/admin/login',
                 xhrFields: {
                     withCredentials: true
                 },
                 method: 'POST',
                 async: false,
-                //dataType: 'json',
+                dataType: 'json',
                 data: {
                     'account': Account,
                     'pwd': Password
@@ -120,7 +113,7 @@
                     UnLoading();
                     modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
                 }
-            });*/
+            });
         }
     }
 </script>

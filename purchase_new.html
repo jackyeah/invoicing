@@ -190,10 +190,6 @@
                                         <input type="text" class="form-control" id="itemName" value="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="itemNo">商品貨號</label>
-                                        <input type="text" class="form-control" id="itemNo" placeholder="請輸入英文數字" value="">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="coast">成本</label>
                                         <input type="text" class="form-control" id="coast" placeholder="請輸入數字" value="">
                                     </div>
@@ -222,6 +218,8 @@
                                 <input type="hidden" id="count" value="1">
                                 <ul class="list-group">
                                     <li class="list-group-item form-group form-inline">
+                                        <label>貨號(1)</label>
+                                        <input type="text" class="form-control" name="item" placeholder="請輸入英文數字" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <label>顏色款式(1)</label>
                                         <input type="text" class="form-control" name="other" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <label>數量(1)</label>
@@ -246,6 +244,13 @@
                 <script type="text/javascript" src="js/purchase_new.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
+                        <input id="submit_date" type="hidden" value="">
+                        <input id="submit_manufacturers" type="hidden" value="">
+                        <input id="submit_remark" type="hidden" value="">
+                        <input id="submit_name" type="hidden" value="">
+                        <input id="submit_coast" type="hidden" value="">
+                        <input id="submit_price" type="hidden" value="">
+                        <input id="submit_purchaseDetail" type="hidden" value="">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
