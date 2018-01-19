@@ -11,6 +11,9 @@ $(function() {
     UnLoading();
 });
 
+/**
+ * ajax - 取得訂貨廠商資料
+ */
 function getManufacturers(){
     $('#Manufacturers').append($('<option>', {value: 1, text: 'NIKE'}));
     $('#Manufacturers').append($('<option>', {value: 2, text: 'ADIDAS'}));
@@ -45,6 +48,9 @@ function getManufacturers(){
     });*/
 }
 
+/**
+ * 增加要進貨的產品
+ */
 function addCount() {
     var count = parseInt($('#count').val()) + 1;
 
@@ -69,10 +75,18 @@ function addCount() {
     $('#count').val(count);
 }
 
+/**
+ * 刪除要進貨的產品
+ * @param index
+ */
 function delCount(index) {
     $('#colorCount' + index).remove();
 }
 
+/**
+ * 顯示安全庫存的輸入框
+ * @param index
+ */
 function safeQuantity(index) {
     if($('#safeSetting_' + index).prop('checked')){
         $('#safeQuantity_' + $('#safeSetting_' + index).val()).show();
@@ -81,6 +95,9 @@ function safeQuantity(index) {
     }
 }
 
+/**
+ * 儲存資料，確認
+ */
 function saveData() {
     var msg = '';
     var Date = $('#Date').val();
@@ -200,6 +217,9 @@ function saveData() {
     }
 }
 
+/**
+ * ajax - 儲存資料，送出
+ */
 function modal_OK() {
     console.log($('#submit_purchaseDetail').val());
 
