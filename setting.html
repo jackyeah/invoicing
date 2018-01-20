@@ -168,17 +168,16 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
-                                <div class="title" id="subTitleDetail">訂單來源</div>
+                                <div class="title" id="subTitleDetail">
+                                    訂單來源
+                                    <a href="javascript:void(1);" onclick="addCount()" title="新增訂單來源">
+                                        <span class="glyphicon glyphicon-plus-sign" style="color: darkgreen !important; margin-left: 10px;" aria-hidden="true"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    露天
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                                </li>
-                                <li class="list-group-item">蝦皮</li>
+                            <ul class="list-group" id="order_source">
                             </ul>
                         </div>
                     </div>
@@ -192,15 +191,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">全家-貨到付款</li>
-                                <li class="list-group-item">7-11-貨到付款</li>
+                            <ul class="list-group" id="shipping_method">
                             </ul>
                         </div>
                     </div>
                 </div>
                 <script type="text/javascript" src="js/jquery-cookie.js"></script>
                 <script type="text/javascript" src="js/invoicing.js"></script>
+                <script type="text/javascript" src="js/setting.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
