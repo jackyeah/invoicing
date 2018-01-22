@@ -6,10 +6,62 @@ $(function() {
 
     $("#nowPTitle").text('我要進貨').after("<li>舊商品補貨</li>");
 
-    //console.log($.cookie('invoicing_token'));
+    getDataList();
+
+    $('#searchText').change(function (){
+        var optionSelected = $("option:selected", this);
+        console.log(optionSelected.val());
+        console.log(optionSelected[0].dataset.coast);
+        console.log(optionSelected[0].dataset.quality);
+
+
+        if(optionSelected.val() == ''){
+            $('#coast').empty().prop('placeholder', '成本');
+            $('#quantity').empty().prop('placeholder', '數量');
+        }else{
+            $('#coast').empty().prop('placeholder', '目前成本為: ' + optionSelected[0].dataset.coast + ' 元');
+            $('#quantity').empty().prop('placeholder', '目前數量為: ' + optionSelected[0].dataset.quality + ' 個');
+        }
+    });
 
     UnLoading();
 });
+
+function getDataList() {
+    Loading();
+    $.ajax({
+        url: apiUrl + '/inventory',
+        method: 'GET',
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token': $.cookie('invoicing_token')
+        },
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            if(data.error_code == '1'){
+                var result = data.result;
+                var DataList = $('#DataList').DataTable();
+                for (var i = 0; i < parseInt(result.length); i++) {
+                    $('#searchText').append($('<option>', {
+                        value: result[i].id,
+                        text: result[i].name + ' - ' + result[i].style + ' (' + result[i].item_no +  ')',
+                        'data-coast': result[i].coast ,
+                        'data-quality': result[i].quality
+                    }));
+                }
+            }
+
+            UnLoading();
+        },
+        error: function (data) {
+            alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            UnLoading();
+        }
+    });
+}
 
 function checkDetail() {
     $('#dataName').text($('#searchText  option:selected').text());
@@ -52,6 +104,45 @@ function saveData() {
 }
 
 function modal_OK() {
-    $('.modal-footer').hide();
-    modal_btn('OK');
+    var sss = {
+        'id' : $('#searchText').val(),
+        'date' : $('#Date').val(),
+        'quantity' : $('#quantity').val(),
+        'coast' : $('#coast').val()
+    };
+
+
+    $.ajax({
+        url: apiUrl + '/purchase',
+        method: 'PUT',
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token': $.cookie('invoicing_token')
+        },
+        dataType: 'json',
+        async: false,
+        data: {
+            'id' : $('#searchText').val(),
+            'date' : $('#Date').val(),
+            'quantity' : $('#quantity').val(),
+            'coast' : $('#coast').val()
+        },
+        success: function (data) {
+            console.log(data);
+            if(data.error_code == '1'){
+                location.href = 'purchase_list.html?msg=1';
+            }else{
+                alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            }
+
+            UnLoading();
+        },
+        error: function (data) {
+            console.log(data);
+            alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            UnLoading();
+        }
+    });
 }
