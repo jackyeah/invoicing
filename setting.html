@@ -170,7 +170,7 @@
                             <div class="card-title">
                                 <div class="title" id="subTitleDetail">
                                     訂單來源
-                                    <a href="javascript:void(1);" onclick="addCount()" title="新增訂單來源">
+                                    <a href="javascript:void(1);" onclick="createData('1')" title="新增訂單來源">
                                         <span class="glyphicon glyphicon-plus-sign" style="color: darkgreen !important; margin-left: 10px;" aria-hidden="true"></span>
                                     </a>
                                 </div>
@@ -187,7 +187,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
-                                <div class="title" id="subTitleDetail_Translation">寄送方式</div>
+                                <div class="title" id="subTitleDetail_Translation">
+                                    寄送方式
+                                    <a href="javascript:void(1);" onclick="createData('4')" title="新增寄送方式">
+                                        <span class="glyphicon glyphicon-plus-sign" style="color: darkgreen !important; margin-left: 10px;" aria-hidden="true"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -200,6 +205,8 @@
                 <script type="text/javascript" src="js/invoicing.js"></script>
                 <script type="text/javascript" src="js/setting.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <input type="hidden" id="submitType" value="">
+                    <input type="hidden" id="submitID" value="">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -211,6 +218,17 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
                                 <button type="button" class="btn btn-danger" onclick="modal_OK()">確認</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade modal-danger" id="modalMsg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel_Msg">系統訊息</h4>
+                            </div>
+                            <div class="modal-body"></div>
                         </div>
                     </div>
                 </div>
