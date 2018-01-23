@@ -8,6 +8,9 @@ $(function() {
     getPurchaseList();
 });
 
+/**
+ * 查看進貨紀錄
+ */
 function getPurchaseList() {
     Loading();
     $.ajax({
@@ -47,4 +50,12 @@ function getPurchaseList() {
             UnLoading();
         }
     });
+}
+
+function editPurchase() {
+
+}
+
+function deletePurchase(itemName) {
+    $('.modal-body').html('請確認是否刪除此進貨紀錄<br>名稱：' + itemName);
 }
