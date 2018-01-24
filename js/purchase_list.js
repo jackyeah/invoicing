@@ -27,12 +27,14 @@ function getPurchaseList() {
         success: function (data) {
             console.log(data);
 
-            if(data.error_code == '1'){
+            if(data.error_code == '1') {
                 var result = data.result;
                 var DataList = $('#DataList').DataTable();
+                DataList.clear();
                 for (var i = 0; i < parseInt(result.length); i++) {
                     DataList.row.add([
-                        '<button type="button" class="btn btn-success">編輯</button> <button type="button" class="btn btn-danger">刪除</button>',
+                        '<button type="button" class="btn btn-success" onclick="editPurchaseModal(\'' + result[i].purchase_id + '\',\'' + result[i].name + ' - ' + result[i].style +  '\',\'' + result[i].purchase_time + '\',\'' + result[i].quantity + '\')">編輯</button> ' +
+                        '<button type="button" class="btn btn-danger" onclick="deletePurchaseModal(\'' + result[i].purchase_id + '\',\'' + result[i].name + ' - ' + result[i].style + '\')">刪除</button>',
                         result[i].purchase_time,
                         result[i].name,
                         result[i].style,
@@ -52,10 +54,122 @@ function getPurchaseList() {
     });
 }
 
-function editPurchase() {
-
+/**
+ * dialog，編輯進貨紀錄
+ * @param itemID
+ * @param itemName
+ * @param itemDate
+ * @param itemQuantity
+ */
+function editPurchaseModal(itemID, itemName, itemDate, itemQuantity) {
+    $('#dataID').val(itemID);
+    $('#dataName').text(itemName);
+    $('#dataDate').empty().prop('placeholder', itemDate);
+    $('#dataCount').empty().prop('placeholder', itemQuantity);
+    $('#modalEdit').modal();
 }
 
-function deletePurchase(itemName) {
-    $('.modal-body').html('請確認是否刪除此進貨紀錄<br>名稱：' + itemName);
+/**
+ * 編輯進貨紀錄
+ */
+function editPurchase() {
+    var dataID = $('#dataID').val();
+    var dataDate = $('#dataDate').val();
+    var dataCount = $('#dataCount').val();
+    var msg = '';
+
+    if(dataDate == ''){
+        msg += "<span style='color: red;'>請輸入進貨日期。</span><br />";
+    }
+
+    if(dataCount == ''){
+        msg += "<span style='color: red;'>請輸入進貨數量。</span><br />";
+    }
+
+    if(msg == ''){
+        $.ajax({
+            url: apiUrl + '/purchase/data',
+            method: 'PUT',
+            xhrFields: {
+                withCredentials: true
+            },
+            headers: {
+                'Api-Token': $.cookie('invoicing_token')
+            },
+            dataType: 'json',
+            async: false,
+            data: {
+                'id' : dataID,
+                'date' : dataDate,
+                'quantity' : dataCount
+            },
+            success: function (data) {
+                console.log(data);
+                if(data.error_code == '1'){
+                    getPurchaseList();
+                    alert_msg('編輯成功');
+                }else{
+                    alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+                }
+
+                UnLoading();
+                $('#modalEdit').modal('hide');
+            },
+            error: function (data) {
+                console.log(data);
+                alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+                UnLoading();
+            }
+        });
+    }else{
+        $('#modalEditBody').append(msg);
+    }
+}
+
+/**
+ * dialog，刪除進貨紀錄
+ * @param itemName
+ */
+function deletePurchaseModal(itemID, itemName) {
+    $('#deleteID').val(itemID);
+    $('#modalButtonBody').html('請確認是否刪除此進貨紀錄<br>名稱：' + itemName);
+    $('#modalButton').modal();
+}
+
+/**
+ * 刪除進貨紀錄
+ */
+function modal_OK() {
+    $.ajax({
+        url: apiUrl + '/purchase/data',
+        method: 'DELETE',
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token': $.cookie('invoicing_token')
+        },
+        dataType: 'json',
+        async: false,
+        data: {
+            'id':$('#deleteID').val()
+        },
+        success: function (data) {
+            console.log(data);
+            if(data.error_code == '1'){
+                getPurchaseList();
+                alert_msg('刪除成功');
+            }else{
+                alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            }
+
+            UnLoading();
+            $('#modalButton').modal('hide');
+        },
+        error: function (data) {
+            console.log(data);
+            alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            UnLoading();
+        }
+    });
 }

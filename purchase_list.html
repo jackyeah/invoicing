@@ -194,16 +194,46 @@
                 <script type="text/javascript" src="js/invoicing.js"></script>
                 <script type="text/javascript" src="js/purchase_list.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <input id="deleteID" type="hidden" value="">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">系統訊息</h4>
                             </div>
-                            <div class="modal-body"></div>
+                            <div class="modal-body" id="modalButtonBody"></div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
                                 <button type="button" class="btn btn-danger" onclick="modal_OK()">確認</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade modal-info" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">更新訂單資料</h4>
+                            </div>
+                            <div class="modal-body" id="modalEditBody">
+                                <input id="dataID" type="hidden" value="">
+                                <div class="sub-title" style="font-size: 18px; font-weight: bold;">
+                                    商品名稱:
+                                    <span id="dataName" style="color: darkslateblue;"></span>
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="dataDate">日期：</label>
+                                    <input id="dataDate" type="text" class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dataCount">數量：</label>
+                                    <input id="dataCount" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                                <button type="button" class="btn btn-success" onclick="editPurchase()">確認</button>
                             </div>
                         </div>
                     </div>
