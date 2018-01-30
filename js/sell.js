@@ -147,7 +147,6 @@ function getInventoryList() {
  */
 function addProduct() {
     if ($('#itemName').val() != '') {
-        console.log($('#itemName option:selected')[0].dataset);
         var index = parseInt($('#productIndex').val()) + 1;
         var info = '<tr id="product' + index + '"> <td>' + $('#itemName option:selected').text() +
             '<input name="productID" type="hidden" value="' + $('#itemName option:selected').val() + '"></td> <td>' +
@@ -230,6 +229,16 @@ function saveData() {
     }
 
     if(msg == ''){
+        // [{"id":"5","quantity":"1","price":"100"},{"id":"6","quantity":"1","price":"130"}]
+        var detail = '[';
+        for(var i=0;i<productID.length;i++) {
+            detail += '{"id":"' + productID[i] + '","quantity":"' + productQuantity[i] + '","price":"' + productPrice[i] + '"},'
+        }
+        detail = detail.substring(0,detail.length-1);
+        detail += ']';
+
+        $('#sellDetail').val(detail);
+
         $('.modal-footer').show();
         modal_btn('請確認是否送出。');
     }else{
@@ -241,6 +250,42 @@ function saveData() {
  * 出貨
  */
 function modal_OK() {
-    $('.modal-footer').hide();
-    modal_btn('已成功儲存資料。');
+    var Date = $('#Date').val();
+    var orderSource = $('#orderSource').val();
+    var Transport = $('#Transport').val();
+    var sellDetail = $('#sellDetail').val();
+
+    $.ajax({
+        url: apiUrl + '/shipping',
+        method: 'POST',
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            'Api-Token': $.cookie('invoicing_token')
+        },
+        dataType: 'json',
+        async: false,
+        data: {
+            'date' : Date,
+            'order_source_id' : orderSource,
+            'shipping_method_id' : Transport,
+            'shippingDetail' : sellDetail
+        },
+        success: function (data) {
+            console.log(data);
+            $('.modal-footer').hide();
+
+            if(data.error_code == '1'){
+                //modal_btn('已成功儲存資料。');
+                location.href = 'order_list.html?msg=1';
+            }else{
+                modal_btn('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+            }
+        },
+        error: function (data) {
+            console.log(data);
+            modal_btn('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
+        }
+    });
 }
