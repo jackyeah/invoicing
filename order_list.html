@@ -171,7 +171,7 @@
                         <label for="EndDate">至</label>
                         <input type="text" class="form-control" id="EndDate" value="">&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <button class="btn btn-primary" onclick="getNewsList()">搜尋</button>
+                        <button class="btn btn-primary" onclick="getOrderList()">搜尋</button>
                     </div>
                 <table id="DataList" class="datatable table table-striped" cellspacing="0" width="100%">
                     <thead>
@@ -195,72 +195,12 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #b3d271; cursor: pointer;" title="展開" onclick="$('#productDetail').show()"></span>
-                                <span>
-                                    狗衣服(黃色) * 3
-                                    <div id="productDetail" style="display: none; padding-left: 17px;">
-                                    狗衣服(綠色) * 2
-                                </div>
-                                </span>
-                            </td>
-                            <td>露天</td>
-                            <td>全家-貨到付款</td>
-                            <td>2018-01-15 00:00:00 / 150</td>
-                            <td>10</td>
-                            <td>
-                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
-                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                狗衣服(黃色) - 3
-                            </td>
-                            <td>露天</td>
-                            <td>全家-貨到付款</td>
-                            <td>2018-01-15 00:00:00 / 150</td>
-                            <td>10</td>
-                            <td>
-                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
-                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                狗衣服(黃色) - 3
-                            </td>
-                            <td>露天</td>
-                            <td>全家-貨到付款</td>
-                            <td>2018-01-15 00:00:00 / 150</td>
-                            <td>10</td>
-                            <td>
-                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
-                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                狗衣服(黃色) - 3
-                            </td>
-                            <td>露天</td>
-                            <td>全家-貨到付款</td>
-                            <td>2018-01-15 00:00:00 / 150</td>
-                            <td>10</td>
-                            <td>
-                                <button type="button" class="btn btn-success" onclick="saveData()">編輯</button>
-                                <button type="button" class="btn btn-danger" onclick="saveData()">刪除</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
                 </div>
                 <script type="text/javascript" src="js/jquery-cookie.js"></script>
                 <script type="text/javascript" src="js/invoicing.js"></script>
+                <script type="text/javascript" src="js/order_list.js"></script>
                 <div class="modal fade modal-danger" id="modalButton" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
