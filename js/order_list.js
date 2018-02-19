@@ -3,9 +3,13 @@
  */
 $(function() {
     Loading();
-    $('#StartDate, #EndDate').datetimepicker({
+    $('#EndDate').datetimepicker({
         format: 'YYYY/MM/DD'
     }).val(getToday());
+
+    $('#StartDate').datetimepicker({
+        format: 'YYYY/MM/DD'
+    }).val(getOneWeekAgo());
 
     $("#nowPTitle").text('我要出貨').after("<li>查閱訂單</li>");
 

@@ -225,6 +225,25 @@ function getToday() {
     return today;
 }
 
+function getOneWeekAgo() {
+    var now = new Date;
+    var str = "";
+    var year = "";
+    var month = "";
+    var day = "";
+    for (var i = 0; i < 7; i++) {
+        if (i == 6) {
+            year = now.getFullYear();
+            month = now.getMonth() + 1;
+            day = now.getDate();
+            str = year + "-" + month + "-" + day;
+        }
+        now.setDate(now.getDate() - 1);
+        nowDate = now.toLocaleDateString();
+    }
+    return str;
+}
+
 // 取得 GET 參數
 function GetURLParameter(sParam){
     var sPageURL = window.location.search.substring(1);
