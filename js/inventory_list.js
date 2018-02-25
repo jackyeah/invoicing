@@ -8,6 +8,9 @@ $(function() {
     getInventoryList();
 });
 
+/**
+ * 庫存清單
+ */
 function getInventoryList() {
     Loading();
     $.ajax({
@@ -24,7 +27,7 @@ function getInventoryList() {
         success: function (data) {
             console.log(data);
 
-            if(data.error_code == '1'){
+            if (data.error_code == '1') {
                 var result = data.result;
                 var DataList = $('#DataList').DataTable();
                 for (var i = 0; i < parseInt(result.length); i++) {
@@ -35,7 +38,7 @@ function getInventoryList() {
                         result[i].price,
                         result[i].style,
                         result[i].quality,
-                        '<button type="button" class="btn btn-success">編輯</button>'
+                        '<button type="button" class="btn btn-success" onclick="dataWindow(' + result[i].id + ')">編輯</button>'
                     ]).draw(false);
                 }
             }
@@ -43,9 +46,15 @@ function getInventoryList() {
             UnLoading();
         },
         error: function (data) {
-            console.log(data);
+            if (data.status == "401") {
+                location.href = 'index.html?msg=1';
+            }
             modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();
         }
     });
+}
+
+function dataWindow(id) {
+    $('#modalData').modal();
 }

@@ -6,6 +6,12 @@ $(function() {
 
     $.fn.dataTable.ext.errMode = 'none';
     getPurchaseList();
+
+    if($.getUrlParam('msg') == "1"){
+        alert_msg('進貨成功。');
+    }else if($.getUrlParam('msg') == "2"){
+        alert_msg('補貨成功。');
+    }
 });
 
 /**
@@ -47,6 +53,9 @@ function getPurchaseList() {
             UnLoading();
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             console.log(data);
             modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();
@@ -116,6 +125,9 @@ function editPurchase() {
                 $('#modalEdit').modal('hide');
             },
             error: function (data) {
+                if(data.status == "401"){
+                    location.href = 'index.html?msg=1';
+                }
                 console.log(data);
                 alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
                 UnLoading();
@@ -167,6 +179,9 @@ function modal_OK() {
             $('#modalButton').modal('hide');
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             console.log(data);
             alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();

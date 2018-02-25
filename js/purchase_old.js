@@ -57,6 +57,9 @@ function getDataList() {
             UnLoading();
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();
         }
@@ -132,7 +135,7 @@ function modal_OK() {
         success: function (data) {
             console.log(data);
             if(data.error_code == '1'){
-                location.href = 'purchase_list.html?msg=1';
+                location.href = 'purchase_list.html?msg=2';
             }else{
                 alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             }
@@ -140,6 +143,9 @@ function modal_OK() {
             UnLoading();
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             console.log(data);
             alert_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();

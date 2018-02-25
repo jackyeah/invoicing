@@ -12,6 +12,10 @@ $(function() {
  * 取得安全庫存清單
  */
 function getSafeInventoryList() {
+    var subtraction = $('#itemName').val();
+    if(subtraction == ''){
+        subtraction = 0;
+    }
     Loading();
     $.ajax({
         url: apiUrl + '/inventory/safe',
@@ -24,12 +28,16 @@ function getSafeInventoryList() {
         },
         dataType: 'json',
         async: false,
+        data: {
+            'subtraction': subtraction
+        },
         success: function (data) {
             console.log(data);
 
             if(data.error_code == '1'){
                 var result = data.result;
                 var DataList = $('#DataList').DataTable();
+                DataList.clear();
                 for (var i = 0; i < parseInt(result.length); i++) {
                     DataList.row.add([
                         result[i].name,
@@ -45,6 +53,9 @@ function getSafeInventoryList() {
             UnLoading();
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             console.log(data);
             modal_msg('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
             UnLoading();

@@ -47,7 +47,7 @@ function getOrderSource(){
                     }));
                 }
 
-                $('#order_source').html(resultData);
+                //$('#order_source').html(resultData);
             }
 
             UnLoading();
@@ -87,7 +87,7 @@ function getShippingMethod(){
                     }));
                 }
 
-                $('#order_source').html(resultData);
+                //$('#order_source').html(resultData);
             }
 
             UnLoading();

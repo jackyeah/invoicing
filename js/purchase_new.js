@@ -255,6 +255,9 @@ function modal_OK() {
             }
         },
         error: function (data) {
+            if(data.status == "401"){
+                location.href = 'index.html?msg=1';
+            }
             console.log(data);
             modal_btn('服務異常，請再度嘗試，若多次出現請聯繫管理員。');
         }

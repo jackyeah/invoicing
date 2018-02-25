@@ -28,6 +28,10 @@
 
 <body class="flat-blue login-page">
 <div class="container">
+    <div id="alertDIv" class="alert fresh-color alert-warning alert-dismissible" role="alert" style="display:none;position:fixed;z-index:999; width:90%;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <strong>[系統訊息]</strong> <span id="alertMsg"></span>
+    </div>
     <div class="login-box">
         <div>
             <div class="login-form row">
@@ -79,6 +83,13 @@
 
 <script type="text/javascript" src="js/invoicing.js"></script>
 <script type="text/javascript">
+    $(function() {
+        console.log($.getUrlParam('msg'));
+        if($.getUrlParam('msg') == "1"){
+            alert_msg('認證過期，請重新登入。');
+        }
+    });
+
     function doLogin() {
         var Account = $('#Account').val();
         var Password = $('#Password').val();
